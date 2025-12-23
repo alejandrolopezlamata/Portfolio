@@ -1,0 +1,524 @@
+.videoWrapper {
+  position: relative;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  max-height: 420px;
+}
+
+/* marco heredado de SmartSparrow */
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* el vídeo rellena el wrapper recortado */
+.videoElement {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none; /* deja pasar el click a los controles */
+}
+
+/* Controles ocultos hasta hover */
+.playPauseButton,
+.muteButton,
+.progressWrapper {
+  position: absolute;
+  z-index: 10;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+
+.videoWrapper:hover .playPauseButton,
+.videoWrapper:hover .muteButton,
+.videoWrapper:hover .progressWrapper {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* PLAY/PAUSE: esquina izquierda inferior */
+.playPauseButton {
+  left: 16px;
+  bottom: 16px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+/* MUTE: esquina derecha inferior */
+.muteButton {
+  right: 16px;
+  bottom: 16px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+/* Barra de progreso */
+.progressWrapper {
+  position: absolute;
+  left: 15%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  width: 66%;      /* aprox de 1/6 a 5/6 */
+  max-width: 480px;
+  z-index: 20;
+}
+
+.progressInput {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+}
+
+/* thumb más visible */
+.progressInput::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+}
+
+.progressInput::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+}
+
+/* Sidebar images (del layout original) */
+.sidebarImages {
+  display: grid;
+  grid-template-columns: repeat(6, [col] 1fr);
+  align-items: center;
+
+  @media (--mediaTablet) {
+    padding: 0 80px;
+    margin-top: 60px;
+  }
+
+  @media (--mediaMobile) {
+    padding: 0 20px;
+    margin-top: 40px;
+  }
+}
+
+.sidebarImage {
+  &:first-child {
+    grid-column: col 1 / span 4;
+    grid-row: 1;
+    position: relative;
+    top: 5%;
+    opacity: 0.4;
+  }
+
+  &:last-child {
+    grid-column: col 3 / span 4;
+    grid-row: 1;
+    position: relative;
+    top: -5%;
+  }
+}
+
+.backgroundLogo {
+  background-size: 60px !important;
+  background-position: 95% center !important;
+  background-repeat: no-repeat !important;
+}
+
+/* Exoesqueleto Section Layout */
+.exoskeletonLayout {
+  display: flex;
+  align-items: flex-start;
+  gap: 4rem;
+  margin: 3rem 0;
+}
+
+.polaroidStyle {
+  flex-shrink: 0;
+  width: 300px;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+  transform: rotate(-10deg);
+  overflow: hidden;
+}
+
+.polaroidStyle img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.exoskeletonText {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Subsecciones */
+.projectSubsection {
+  margin: 1.5rem 0;
+}
+
+.subsectionTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--colorTextTitle);
+  letter-spacing: 0.5px;
+}
+
+.projectList {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.projectList li {
+  margin-bottom: 0.6rem;
+  padding-left: 1.5rem;
+  position: relative;
+  line-height: 1.6;
+  color: var(--colorTextBody);
+}
+
+.projectList li:before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--colorAccent, #0066cc);
+  font-weight: 600;
+}
+
+/* Responsive exoesqueleto */
+@media (max-width: 1024px) {
+  .exoskeletonLayout {
+    gap: 2.5rem;
+  }
+
+  .polaroidStyle {
+    width: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .exoskeletonLayout {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .polaroidStyle {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .exoskeletonText {
+    width: 100%;
+  }
+}
+
+@media (max-width: 512px) {
+  .exoskeletonLayout {
+    gap: 1.5rem;
+  }
+
+  .polaroidStyle {
+    padding: 16px;
+  }
+
+  .subsectionTitle {
+    font-size: 1rem;
+  }
+
+  .projectList li {
+    font-size: 0.95rem;
+  }
+}
+
+/* AI layout */
+.aiLayout {
+  display: flex;
+  align-items: stretch;
+  gap: 3rem;
+  margin: 3rem 0;
+}
+
+.aiImageWrapper {
+  flex: 0 0 260px;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.aiImageWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.aiText {
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 768px) {
+  .aiLayout {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .aiImageWrapper {
+    width: 100%;
+    max-width: 360px;
+    height: 260px;
+  }
+}
+
+/* Burgos Section Layout */
+.burgosLayout {
+  display: flex;
+  align-items: stretch;
+  gap: 2.5rem;
+  margin: 2.5rem 0;
+}
+
+.burgosImageWrapper {
+  flex: 0 0 400px;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.burgosImageWrapper img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.burgosText {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Responsive Burgos */
+@media (max-width: 768px) {
+  .burgosLayout {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .burgosImageWrapper {
+    width: 100%;
+    max-width: 380px;
+  }
+
+  .burgosText {
+    width: 100%;
+  }
+}
+
+/* ==== LuminAI hero + sección vídeo, con poco aire entre ambas ==== */
+
+/* Sección de vídeo (ProjectSection) justo antes de LuminAI */
+.videoSection {
+  padding-top: 1rem !important;       /* un poco de aire interno */
+  padding-bottom: 0.5rem !important;
+  margin-top: 2.5rem !important;      /* aire entre portada y "How it started" */
+  margin-bottom: 0 !important;
+}
+
+/* Quita padding/margen interno en columnas/contenido solo en la sección de vídeo */
+.videoSection > div,
+.videoSection [class*='Project_sectionInner'],
+.videoSection [class*='Project_sectionContent'],
+.videoSection [class*='Project_sectionColumns'] {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Sección LuminAI (ProjectSection) */
+.luminaiSection {
+  padding-top: 0.5rem !important;     /* pequeño aire desde el vídeo */
+  padding-bottom: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Sin padding/margen extra dentro del ProjectSection de LuminAI */
+.luminaiSection > div,
+.luminaiSection [class*='Project_sectionInner'],
+.luminaiSection [class*='Project_sectionContent'],
+.luminaiSection [class*='Project_sectionColumns'] {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Wrapper del hero LuminAI */
+.luminaiWrapper {
+  text-align: center;
+  padding: 1rem 0 !important;   /* un poco de respiro propio */
+  margin: 0 !important;
+}
+
+.luminaiTitle {
+  font-size: clamp(3rem, 10vw, 7rem);
+  margin-bottom: 1.5rem;
+}
+
+.luminaiCanvas {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.summary {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.preview,
+.model {
+  height: 100%;
+}
+
+.sidebarImages {
+  display: grid;
+  grid-template-columns: repeat(6, [col] 1fr);
+  align-items: center;
+
+  @media (--mediaTablet) {
+    padding: 0 80px;
+    margin-top: 60px;
+  }
+
+  @media (--mediaMobile) {
+    padding: 0 20px;
+    margin-top: 40px;
+  }
+}
+
+.sidebarImage {
+  &:first-child {
+    grid-column: col 1 / span 4;
+    grid-row: 1;
+    position: relative;
+    top: 5%;
+    opacity: 0.4;
+  }
+
+  &:last-child {
+    grid-column: col 3 / span 4;
+    grid-row: 1;
+    position: relative;
+    top: -5%;
+  }
+}
+/* ==== Estilos imágenes MLP y Group 09 ==== */
+
+/* ==== Estilos imágenes MLP y Group 09 ==== */
+
+/* Contenedor MLP: tarjeta blanca con imagen dentro */
+.mlpImage {
+  display: block;
+  width: 100%;
+  max-width: 620px;                /* más grande que antes */
+  margin: 0 auto;
+  padding: 10px;                   /* borde blanco sin recortar la imagen */
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+  opacity: 1;
+}
+
+/* Asegura que el <img> interno no se deforma dentro de la tarjeta */
+.mlpImage img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;             /* ligera curva solo a la foto */
+}
+
+/* Group 09: un poco más pequeña, con marco blanco limpio */
+.group9Image {
+  display: block;
+  margin: 0 auto;
+  max-width: 60vw;                 /* baja un poco el tamaño visual */
+  padding: 10px;                   /* marco blanco */
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+}
+
+/* Imagen real dentro de Group 09 */
+.group9Image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+/* ==== Ajuste específico para la sección What I did (MLP) ==== */
+
+/* Sobrescribe el grid solo cuando dentro va la MLP */
+.sidebarImages:has(.mlpImage) {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* Tarjeta MLP grande, con borde blanco y que use bien el ancho de la columna */
+.sidebarImages .mlpImage {
+  width: 100%;
+  max-width: 640px;
+  margin: 0;
+  padding: 12px;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  opacity: 1;
+}
+
+/* El <img> real que pinta tu componente Image */
+.sidebarImages .mlpImage img {
+  width: 100% !important;
+  height: auto !important;
+  display: block;
+  border-radius: 12px;
+}
+/* Menos hueco encima de la sección MLP ("What I did") */
+.whatIDidSection {
+  padding-top: 0.75rem !important;
+  margin-top: 0.75rem !important;  /* reduce espacio tras el vídeo de LuminAI */
+}

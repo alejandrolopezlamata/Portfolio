@@ -1,0 +1,161 @@
+/* src/pages/projects/otros/otros.module.css */
+.backgroundLogo {
+  background-size: 60px !important;
+  background-position: 95% center !important;
+  background-repeat: no-repeat !important;
+}
+
+.projectSubsection {
+  margin: 1.5rem 0;
+}
+
+.subsectionTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--colorTextTitle);
+  letter-spacing: 0.5px;
+}
+
+/* Layout alternando imagen/texto */
+.rowLayout {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+/* Texto con algo más de espacio */
+.colText {
+  flex: 1.3;
+  min-width: 0;
+}
+
+/* Imágenes más pequeñas */
+.colImage {
+  flex: 0.9;
+  max-width: 280px;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.colImage img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+/* Contenedor para 2 imágenes apiladas (Peristaltic, Microneedles, CAD) */
+.peristalticImages {
+  display: flex;
+  flex-direction: column; /* una debajo de otra */
+  gap: 0.75rem;
+}
+
+.peristalticItem img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+}
+
+/* Fondo sección Fluid Mechanics: negro + degradado vertical suave */
+.fluidSection {
+  position: relative;
+  padding: 2.5rem 0;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.fluidSection::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    0deg,
+    #050505 0%,
+    #050505 40%,
+    rgba(5, 5, 5, 0.6) 70%,
+    rgba(5, 5, 5, 0.3) 100%
+  );
+  z-index: 0;
+}
+
+.fluidSection > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Estilo de links de proyecto (similar al resto del sitio) */
+.projectLink {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: var(--colorAccent);
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+}
+
+.projectLink::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -0.1rem;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 160ms ease-out;
+}
+
+.projectLink:hover::after {
+  transform: scaleX(1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .rowLayout {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .colImage {
+    width: 100%;
+    max-width: 260px;
+  }
+
+  .colText {
+    width: 100%;
+  }
+}
+.projectLink {
+  display: inline-block;
+  margin-top: 0.25rem;
+  color: var(--colorAccent); /* mismo token azul que en el resto de la web */
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+}
+
+/* subrayado sutil como en otras secciones */
+.projectLink::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -0.1rem;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 160ms ease-out;
+}
+
+.projectLink:hover::after {
+  transform: scaleX(1);
+}

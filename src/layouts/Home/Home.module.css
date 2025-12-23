@@ -1,0 +1,7 @@
+.home {
+  overflow-x: hidden;
+}
+.disciplineWord {
+  font-size: 0.04em;      /* solo disciplinas más pequeñas */
+  letter-spacing: -0.02em;
+}

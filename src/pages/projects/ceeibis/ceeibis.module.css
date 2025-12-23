@@ -1,0 +1,284 @@
+.video {
+  width: 120%;
+
+  @media (--mediaLaptop) {
+    width: 150%;
+  }
+
+  @media (--mediaTablet) {
+    width: 100%;
+  }
+}
+
+.sidebarImages {
+  display: grid;
+  grid-template-columns: repeat(6, [col] 1fr);
+  align-items: center;
+
+  @media (--mediaTablet) {
+    padding: 0 80px;
+    margin-top: 60px;
+  }
+
+  @media (--mediaMobile) {
+    padding: 0 20px;
+    margin-top: 40px;
+  }
+}
+
+.sidebarImage {
+  &:first-child {
+    grid-column: col 1 / span 4;
+    grid-row: 1;
+    position: relative;
+    top: 5%;
+    opacity: 0.4;
+  }
+
+  &:last-child {
+    grid-column: col 3 / span 4;
+    grid-row: 1;
+    position: relative;
+    top: -5%;
+  }
+}
+
+.backgroundLogo {
+  background-size: 60px !important;
+  background-position: 95% center !important;
+  background-repeat: no-repeat !important;
+}
+/* Exoesqueleto Section Layout */
+.exoskeletonLayout {
+  display: flex;
+  align-items: flex-start;
+  gap: 4rem;
+  margin: 3rem 0;
+}
+
+.polaroidStyle {
+  flex-shrink: 0;
+  width: 300px;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+  transform: rotate(-10deg);
+  overflow: hidden;
+}
+
+.polaroidStyle img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.exoskeletonText {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Subsecciones */
+.projectSubsection {
+  margin: 1.5rem 0;
+}
+
+.subsectionTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--colorTextTitle);
+  letter-spacing: 0.5px;
+}
+
+.projectList {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.projectList li {
+  margin-bottom: 0.6rem;
+  padding-left: 1.5rem;
+  position: relative;
+  line-height: 1.6;
+  color: var(--colorTextBody);
+}
+
+.projectList li:before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--colorAccent, #0066cc);
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .exoskeletonLayout {
+    gap: 2.5rem;
+  }
+
+  .polaroidStyle {
+    width: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .exoskeletonLayout {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .polaroidStyle {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .exoskeletonText {
+    width: 100%;
+  }
+}
+
+@media (max-width: 512px) {
+  .exoskeletonLayout {
+    gap: 1.5rem;
+  }
+
+  .polaroidStyle {
+    padding: 16px;
+  }
+
+  .subsectionTitle {
+    font-size: 1rem;
+  }
+
+  .projectList li {
+    font-size: 0.95rem;
+  }
+  
+}
+.aiLayout {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  margin: 3rem 0;
+}
+
+.aiImageWrapper {
+  flex-shrink: 0;
+  width: 320px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.aiImageWrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.aiText {
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 768px) {
+  .aiLayout {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .aiImageWrapper {
+    width: 100%;
+    max-width: 360px;
+  }
+}
+.aiLayout {
+  display: flex;
+  align-items: stretch;
+  gap: 3rem;
+  margin: 3rem 0;
+}
+
+.aiImageWrapper {
+  flex: 0 0 260px;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.aiImageWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.aiText {
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 768px) {
+  .aiLayout {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .aiImageWrapper {
+    width: 100%;
+    max-width: 360px;
+    height: 260px;
+  }
+}
+/* Burgos Section Layout */
+.burgosLayout {
+  display: flex;
+  align-items: stretch;
+  gap: 2.5rem;
+  margin: 2.5rem 0;
+}
+
+/* Un pelín más grande que AI, pero sin comerse el texto */
+.burgosImageWrapper {
+  flex: 0 0 400px;   /* antes 260px o 45%, aquí solo un poco más */
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.burgosImageWrapper img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.burgosText {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Responsive Burgos */
+@media (max-width: 768px) {
+  .burgosLayout {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .burgosImageWrapper {
+    width: 100%;
+    max-width: 380px; /* un pelín más grande, pero controlada */
+  }
+
+  .burgosText {
+    width: 100%;
+  }
+}
