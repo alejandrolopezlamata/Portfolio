@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "homepage": "https://alejandro-lopez-lamata.vercel.app/",
   "description": "Portfolio site for Alejandro López Lamata",
-  "repository": "",
+  "repository": "https://github.com/alejandrolopezlamata/Portfolio",
   "author": "Alejandro Lopez Lamata <alejandrolopezlamata@gmail.com>",
   "devDependencies": {
     "@mapbox/rehype-prism": "^0.8.0",

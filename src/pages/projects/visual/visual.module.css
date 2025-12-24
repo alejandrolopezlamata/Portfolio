@@ -522,3 +522,28 @@
   padding-top: 0.75rem !important;
   margin-top: 0.75rem !important;  /* reduce espacio tras el vídeo de LuminAI */
 }
+.fullVideoButton {
+  position: absolute;
+  right: 1rem;
+  bottom: 16rem;
+  z-index: 3;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s ease, transform 0.15s ease, opacity 0.2s ease;
+  opacity: 0;
+}
+
+.videoWrapper:hover .fullVideoButton {
+  opacity: 1;
+}
+
+.fullVideoButton:hover {
+  background: rgba(0, 0, 0, 0.85);
+  transform: translateY(-1px);
+}

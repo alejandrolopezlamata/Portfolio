@@ -2,6 +2,7 @@ import backgroundSprLarge from 'assets/urania-tablet-placeholder.jpg';
 import backgroundSprPlaceholder from 'assets/ceeibis-hero-placeholder.png';
 import backgroundSpr from 'assets/ceeibis-hero.png';
 
+
 // Portada principal (por si las reutilizas más adelante)
 import imageSprLessonBuilderDarkLarge from 'assets/Ceeibisportada.png';
 import imageSprLessonBuilderDarkPlaceholder from 'assets/Ceeibisportada.png';
@@ -10,22 +11,28 @@ import imageSprLessonBuilderLightLarge from 'assets/Ceeibisportada.png';
 import imageSprLessonBuilderLightPlaceholder from 'assets/Ceeibisportada.png';
 import imageSprLessonBuilderLight from 'assets/Ceeibisportada.png';
 
+
 // Collage JEIB + Hackathon
 import collage from 'assets/collage.png';
 import meddevice from 'assets/meddevice.jpg';
 import mlp from 'assets/mlp.png';
 
+
 // AI course
 import AIcourse from 'assets/AIcurso2.png';
+
 
 // Exoesqueleto
 import exoskeletonImage from 'assets/exoesqueleto.png';
 
+
 // Burgos
 import burgosImage from 'assets/Burgos.png';
 
+
 // Placeholder del vídeo (imagen)
 import uraniaVideoPlaceholder from 'assets/uraniavid-placeholder.png';
+
 
 // NUEVO: assets para motion design (usa tus propios assets si los cambias)
 import imageSprBackgroundVolcanismLarge from 'assets/spr-background-volcanism-large.jpg';
@@ -34,6 +41,7 @@ import imageSprBackgroundVolcanism from 'assets/spr-background-volcanism.jpg';
 import videoSprMotionLarge from 'assets/LuminaiPromoV5.mp4';
 import videoSprMotionPlaceholder from 'assets/spr-motion-placeholder.jpg';
 import videoSprMotion from 'assets/LuminaiPromoV5.mp4';
+
 
 import { Footer } from 'components/Footer';
 import { Image } from 'components/Image';
@@ -57,29 +65,37 @@ import { Fragment, useRef, useState } from 'react';
 import { media } from 'utils/style';
 import styles from './visual.module.css';
 
+
 // (LuminaiSummary eliminado)
+
 
 const title = 'Visual impairment & accessibility';
 const description =
   'Over the last few years I’ve been developing assistive technology for people with visual impairment, inspired by challenges I’ve seen very closely in my own family. What started as a high‑school research project soon grew into an award‑winning prototype, and later into a series of wearable concepts exploring how sensing, AI and thoughtful product design can surface the kind of social cues that are often easy to miss with reduced vision.';
 
+
 const roles = [];
+
 
 export const Visual = () => {
   const { themeId } = useTheme();
   const { dispatch } = useAppContext();
 
+
   const isDark = themeId === 'dark';
   const themes = ['dark', 'light'];
+
 
   const handleThemeChange = index => {
     dispatch({ type: 'setTheme', value: themes[index] });
   };
 
+
   const videoRef = useRef(null);
   const [isMuted, setIsMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(true);
   const [progress, setProgress] = useState(0); // 0–100
+
 
   const handleToggleMute = () => {
     if (!videoRef.current) return;
@@ -87,6 +103,7 @@ export const Visual = () => {
     videoRef.current.muted = nextMuted;
     setIsMuted(nextMuted);
   };
+
 
   const handleTogglePlay = () => {
     if (!videoRef.current) return;
@@ -99,12 +116,14 @@ export const Visual = () => {
     }
   };
 
+
   const handleLoadedMetadata = () => {
     if (!videoRef.current) return;
     const dur = videoRef.current.duration || 0;
     const startAt = dur * 0.025; // 2.5% del vídeo
     videoRef.current.currentTime = startAt;
   };
+
 
   const handleTimeUpdate = () => {
     if (!videoRef.current) return;
@@ -114,6 +133,7 @@ export const Visual = () => {
     setProgress(pct);
   };
 
+
   const handleSeek = event => {
     if (!videoRef.current) return;
     const value = Number(event.target.value); // 0–100
@@ -122,6 +142,7 @@ export const Visual = () => {
     videoRef.current.currentTime = newTime;
     setProgress(value);
   };
+
 
   return (
     <Fragment>
@@ -141,6 +162,7 @@ export const Visual = () => {
           roles={roles}
         />
 
+
         {/* Sección tipo Motion design con vídeo desde /public (Urania) */}
         <ThemeProvider themeId="dark" data-invert>
           <ProjectSection
@@ -155,12 +177,13 @@ export const Visual = () => {
                     This early prototype focused on detecting everyday obstacles for people with visual impairment, tailored to the specific needs of a close family member and refined through surveys with patients. I later presented this work at the Urania III Young Research Congress in Tudela, where it received the prize for the best project in the Health category.
                   </ProjectSectionText>
                   <ProjectSectionText as="div">
-                    <Link href="https://ceeibis.com/officialweb/">
-                      Visit the CEEIBIS website
+                    <Link href="https://ainves.org/an520235762/">
+                      Full text link
                     </Link>
                   </ProjectSectionText>
                 </ProjectTextRow>
               </ProjectSectionContent>
+
 
               <div className={styles.videoWrapper}>
                 <Image
@@ -177,7 +200,7 @@ export const Visual = () => {
                 <video
                   ref={videoRef}
                   className={styles.videoElement}
-                  src="/videos/uraniavid.mp4"
+                  src="/videos/uraniavid-trailer.mp4"
                   poster={uraniaVideoPlaceholder.src}
                   autoPlay
                   loop
@@ -185,7 +208,15 @@ export const Visual = () => {
                   playsInline
                   onLoadedMetadata={handleLoadedMetadata}
                   onTimeUpdate={handleTimeUpdate}
-                />
+                >
+                  <track
+                    kind="subtitles"
+                    srcLang="en"
+                    label="English"
+                    src="/subtitles/uraniavid-en.vtt"
+                    default
+                  />
+                </video>
                 <button
                   type="button"
                   className={styles.playPauseButton}
@@ -211,10 +242,23 @@ export const Visual = () => {
                     onInput={handleSeek}
                   />
                 </div>
+
+
+                {/* Botón superpuesto Full video */}
+                <button
+                  type="button"
+                  className={styles.fullVideoButton}
+                  onClick={() =>
+                    window.open('https://www.youtube.com/watch?v=QYZiib_pzDk&t=5355s', '_blank')
+                  }
+                >
+                  Full video
+                </button>
               </div>
             </ProjectSectionColumns>
           </ProjectSection>
         </ThemeProvider>
+
 
         {/* Sección Motion design LuminAI (vídeo + texto) */}
         <ThemeProvider themeId="dark" data-invert>
@@ -248,6 +292,7 @@ export const Visual = () => {
                 />
               </div>
 
+
               {/* TEXTO + BOTÓN A LA DERECHA */}
               <ProjectSectionContent width="full">
                 <ProjectTextRow width="s">
@@ -265,6 +310,7 @@ export const Visual = () => {
             </ProjectSectionColumns>
           </ProjectSection>
         </ThemeProvider>
+
 
         {/* NUEVA sección: What I did + MLP */}
         <ProjectSection className={styles.whatIDidSection}>
@@ -289,6 +335,7 @@ export const Visual = () => {
           </ProjectSectionColumns>
         </ProjectSection>
 
+
         {/* Group 09 en grande con pie de foto */}
         <ProjectSection>
           <ProjectSectionContent>
@@ -311,6 +358,7 @@ export const Visual = () => {
             </ProjectTextRow>
           </ProjectSectionContent>
         </ProjectSection>
+
 
         <Footer />
       </ProjectContainer>
