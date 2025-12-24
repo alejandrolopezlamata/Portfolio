@@ -16,19 +16,19 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>undefined/projects/otros/</loc>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
     <loc>undefined/projects/ceeibis/</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>undefined/projects/slice/</loc>
+    <loc>undefined/projects/otros/</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>undefined/projects/smart-sparrow/</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>undefined/projects/slice/</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
