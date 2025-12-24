@@ -14,7 +14,6 @@ import imageSprLessonBuilderLight from 'assets/Ceeibisportada.png';
 
 // Collage JEIB + Hackathon
 import collage from 'assets/collage.png';
-import meddevice from 'assets/meddevice.jpg';
 import mlp from 'assets/mlp.png';
 
 
@@ -22,17 +21,14 @@ import mlp from 'assets/mlp.png';
 import AIcourse from 'assets/AIcurso2.png';
 
 
-// Exoesqueleto
-import exoskeletonImage from 'assets/exoesqueleto.png';
-
 
 // Burgos
 import burgosImage from 'assets/Burgos.png';
 
 
 // Placeholder del vídeo (imagen)
-import uraniaVideoPlaceholder from 'assets/uraniavid-placeholder.png';
-
+import meddevice from '../../../assets/meddevice.jpg';
+import uraniaVideoPlaceholder from '../../../assets/uraniavid-placeholder.png';
 
 // NUEVO: assets para motion design (usa tus propios assets si los cambias)
 import imageSprBackgroundVolcanismLarge from 'assets/spr-background-volcanism-large.jpg';

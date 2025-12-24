@@ -17,7 +17,8 @@ import collage from 'assets/collage.png';
 import AIcourse from 'assets/AIcurso2.png';
 
 // Exoesqueleto
-import exoskeletonImage from 'assets/exoesqueleto.png';
+import exoskeletonImage from '../../../assets/exoesqueleto.png';
+
 
 // Burgos
 import burgosImage from 'assets/Burgos.png';
