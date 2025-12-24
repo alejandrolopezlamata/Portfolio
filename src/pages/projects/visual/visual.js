@@ -2,8 +2,7 @@ import backgroundSprLarge from 'assets/urania-tablet-placeholder.jpg';
 import backgroundSprPlaceholder from 'assets/ceeibis-hero-placeholder.png';
 import backgroundSpr from 'assets/ceeibis-hero.png';
 
-
-// Portada principal (por si las reutilizas más adelante)
+// Portada principal
 import imageSprLessonBuilderDarkLarge from 'assets/Ceeibisportada.png';
 import imageSprLessonBuilderDarkPlaceholder from 'assets/Ceeibisportada.png';
 import imageSprLessonBuilderDark from 'assets/Ceeibisportada.png';
@@ -11,33 +10,30 @@ import imageSprLessonBuilderLightLarge from 'assets/Ceeibisportada.png';
 import imageSprLessonBuilderLightPlaceholder from 'assets/Ceeibisportada.png';
 import imageSprLessonBuilderLight from 'assets/Ceeibisportada.png';
 
-
 // Collage JEIB + Hackathon
 import collage from 'assets/collage.png';
 import mlp from 'assets/mlp.png';
 
-
 // AI course
 import AIcourse from 'assets/AIcurso2.png';
 
-
-
 // Burgos
 import burgosImage from 'assets/Burgos.png';
-
 
 // Placeholder del vídeo (imagen)
 import meddevice from '../../../assets/meddevice.JPG';
 import uraniaVideoPlaceholder from '../../../assets/uraniavid-placeholder.png';
 
-// NUEVO: assets para motion design (usa tus propios assets si los cambias)
+// NUEVO: vídeo Urania como asset estático
+import uraniaVideo from 'assets/uraniavid-trailer.mp4';
+
+// NUEVO: assets para motion design (LuminAI)
 import imageSprBackgroundVolcanismLarge from 'assets/spr-background-volcanism-large.jpg';
 import imageSprBackgroundVolcanismPlaceholder from 'assets/spr-background-volcanism-placeholder.jpg';
 import imageSprBackgroundVolcanism from 'assets/spr-background-volcanism.jpg';
 import videoSprMotionLarge from 'assets/LuminaiPromoV5.mp4';
 import videoSprMotionPlaceholder from 'assets/spr-motion-placeholder.jpg';
 import videoSprMotion from 'assets/LuminaiPromoV5.mp4';
-
 
 import { Footer } from 'components/Footer';
 import { Image } from 'components/Image';
@@ -57,41 +53,49 @@ import {
   ProjectSectionColumns,
   ProjectTextRow,
 } from 'layouts/Project';
-import { Fragment, useRef, useState } from 'react';
+import { Fragment, useRef, useState, useEffect } from 'react';
 import { media } from 'utils/style';
 import styles from './visual.module.css';
-
-
-// (LuminaiSummary eliminado)
-
 
 const title = 'Visual impairment & accessibility';
 const description =
   'Over the last few years I’ve been developing assistive technology for people with visual impairment, inspired by challenges I’ve seen very closely in my own family. What started as a high‑school research project soon grew into an award‑winning prototype, and later into a series of wearable concepts exploring how sensing, AI and thoughtful product design can surface the kind of social cues that are often easy to miss with reduced vision.';
 
-
 const roles = [];
-
 
 export const Visual = () => {
   const { themeId } = useTheme();
   const { dispatch } = useAppContext();
 
-
   const isDark = themeId === 'dark';
   const themes = ['dark', 'light'];
-
 
   const handleThemeChange = index => {
     dispatch({ type: 'setTheme', value: themes[index] });
   };
-
 
   const videoRef = useRef(null);
   const [isMuted, setIsMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(true);
   const [progress, setProgress] = useState(0); // 0–100
 
+  // Forzar autoplay razonable al montar (especialmente en producción)
+  useEffect(() => {
+    if (!videoRef.current) return;
+    const video = videoRef.current;
+
+    video.muted = true;
+
+    video
+      .play()
+      .then(() => {
+        setIsPlaying(true);
+      })
+      .catch(() => {
+        // Si el navegador bloquea el autoplay, reflejarlo en el estado
+        setIsPlaying(false);
+      });
+  }, []);
 
   const handleToggleMute = () => {
     if (!videoRef.current) return;
@@ -99,7 +103,6 @@ export const Visual = () => {
     videoRef.current.muted = nextMuted;
     setIsMuted(nextMuted);
   };
-
 
   const handleTogglePlay = () => {
     if (!videoRef.current) return;
@@ -112,14 +115,12 @@ export const Visual = () => {
     }
   };
 
-
   const handleLoadedMetadata = () => {
     if (!videoRef.current) return;
     const dur = videoRef.current.duration || 0;
     const startAt = dur * 0.025; // 2.5% del vídeo
     videoRef.current.currentTime = startAt;
   };
-
 
   const handleTimeUpdate = () => {
     if (!videoRef.current) return;
@@ -129,7 +130,6 @@ export const Visual = () => {
     setProgress(pct);
   };
 
-
   const handleSeek = event => {
     if (!videoRef.current) return;
     const value = Number(event.target.value); // 0–100
@@ -138,7 +138,6 @@ export const Visual = () => {
     videoRef.current.currentTime = newTime;
     setProgress(value);
   };
-
 
   return (
     <Fragment>
@@ -154,12 +153,10 @@ export const Visual = () => {
         <ProjectHeader
           title={title}
           description={description}
-          // url="https://ceeibis.com/officialweb/"
           roles={roles}
         />
 
-
-        {/* Sección tipo Motion design con vídeo desde /public (Urania) */}
+        {/* Sección Urania */}
         <ThemeProvider themeId="dark" data-invert>
           <ProjectSection
             backgroundOverlayOpacity={0.5}
@@ -180,7 +177,6 @@ export const Visual = () => {
                 </ProjectTextRow>
               </ProjectSectionContent>
 
-
               <div className={styles.videoWrapper}>
                 <Image
                   raised
@@ -196,12 +192,13 @@ export const Visual = () => {
                 <video
                   ref={videoRef}
                   className={styles.videoElement}
-                  src="/videos/uraniavid-trailer.mp4"
+                  src={uraniaVideo}
                   poster={uraniaVideoPlaceholder.src}
                   autoPlay
                   loop
-                  muted={isMuted}
+                  muted
                   playsInline
+                  preload="auto"
                   onLoadedMetadata={handleLoadedMetadata}
                   onTimeUpdate={handleTimeUpdate}
                 >
@@ -239,13 +236,14 @@ export const Visual = () => {
                   />
                 </div>
 
-
-                {/* Botón superpuesto Full video */}
                 <button
                   type="button"
                   className={styles.fullVideoButton}
                   onClick={() =>
-                    window.open('https://www.youtube.com/watch?v=QYZiib_pzDk&t=5355s', '_blank')
+                    window.open(
+                      'https://www.youtube.com/watch?v=QYZiib_pzDk&t=5355s',
+                      '_blank'
+                    )
                   }
                 >
                   Full video
@@ -255,8 +253,7 @@ export const Visual = () => {
           </ProjectSection>
         </ThemeProvider>
 
-
-        {/* Sección Motion design LuminAI (vídeo + texto) */}
+        {/* Sección Motion design LuminAI */}
         <ThemeProvider themeId="dark" data-invert>
           <ProjectSection
             backgroundOverlayOpacity={0.5}
@@ -273,7 +270,6 @@ export const Visual = () => {
             }
           >
             <ProjectSectionColumns width="full">
-              {/* VÍDEO / ANIMACIÓN A LA IZQUIERDA */}
               <div className={styles.videoWrapper}>
                 <Image
                   raised
@@ -288,8 +284,6 @@ export const Visual = () => {
                 />
               </div>
 
-
-              {/* TEXTO + BOTÓN A LA DERECHA */}
               <ProjectSectionContent width="full">
                 <ProjectTextRow width="s">
                   <ProjectSectionHeading>LuminAI</ProjectSectionHeading>
@@ -307,8 +301,7 @@ export const Visual = () => {
           </ProjectSection>
         </ThemeProvider>
 
-
-        {/* NUEVA sección: What I did + MLP */}
+        {/* What I did + MLP */}
         <ProjectSection className={styles.whatIDidSection}>
           <ProjectSectionColumns>
             <ProjectSectionContent>
@@ -331,8 +324,7 @@ export const Visual = () => {
           </ProjectSectionColumns>
         </ProjectSection>
 
-
-        {/* Group 09 en grande con pie de foto */}
+        {/* Group 09 en grande */}
         <ProjectSection>
           <ProjectSectionContent>
             <Image
@@ -354,7 +346,6 @@ export const Visual = () => {
             </ProjectTextRow>
           </ProjectSectionContent>
         </ProjectSection>
-
 
         <Footer />
       </ProjectContainer>
