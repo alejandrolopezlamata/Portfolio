@@ -27,7 +27,7 @@ import burgosImage from 'assets/Burgos.png';
 
 
 // Placeholder del vídeo (imagen)
-import meddevice from '../../../assets/meddevice.jpg';
+import meddevice from '../../../assets/meddevice.JPG';
 import uraniaVideoPlaceholder from '../../../assets/uraniavid-placeholder.png';
 
 // NUEVO: assets para motion design (usa tus propios assets si los cambias)
