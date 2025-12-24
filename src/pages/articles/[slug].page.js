@@ -46,12 +46,16 @@ export const getStaticProps = async ({ params }) => {
   const { time } = readingTime(matter.content);
   const timecode = formatTimecode(time);
 
-  const ogImage = await generateOgImage({
-    title: frontmatter.title,
-    date: frontmatter.date,
-    banner: frontmatter.banner,
-    timecode,
-  });
+  // En Vercel (build de producción) no ejecutar Puppeteer
+  let ogImage = null;
+  if (process.env.VERCEL !== '1') {
+    ogImage = await generateOgImage({
+      title: frontmatter.title,
+      date: frontmatter.date,
+      banner: frontmatter.banner,
+      timecode,
+    });
+  }
 
   return {
     props: { code, frontmatter, timecode, ogImage },
