@@ -25,7 +25,7 @@ import meddevice from '../../../assets/meddevice.JPG';
 import uraniaVideoPlaceholder from '../../../assets/uraniavid-placeholder.png';
 
 // NUEVO: vídeo Urania como asset estático
-import uraniaVideo from 'assets/uraniavid-trailer.mp4';
+import uraniaVideo from 'assets/Uraniavid-trailer.mp4';
 
 // NUEVO: assets para motion design (LuminAI)
 import imageSprBackgroundVolcanismLarge from 'assets/spr-background-volcanism-large.jpg';
