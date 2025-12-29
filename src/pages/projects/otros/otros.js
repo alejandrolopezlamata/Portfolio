@@ -91,13 +91,13 @@ export const Otros = () => {
 
               <div className={styles.colText}>
                 <ProjectSectionText>
-                  This gallery gathers a selection of CAD models and renders created for different biomedical projects, from vascular phantoms and microneedle arrays to components for wearable devices and exoskeletons.
+                  A comprehensive CAD design project developed collaboratively by our team to conceptualize a surgical robotic system. I contributed with photorealistic 3D rendering and part of the 3D design of key robot components.
                 </ProjectSectionText>
                 <ProjectSectionText>
-                  The focus is on translating clinical or biomechanical requirements into clean parametric geometries, ensuring that parts are manufacturable while remaining visually clear for communication and documentation purposes.
+                  This was a design exploration focused on spatial layout, component geometry, and system architecture—purely from a CAD perspective without mechanical implementation, motors, or functional systems.
                 </ProjectSectionText>
                 <ProjectSectionText>
-                  These designs have also been used to generate visualisations and animations for presentations, reports and project pitches in both academic and industry-oriented contexts.
+                  The technical renders and documentation provide a complete visual reference for the conceptual design and system integration requirements.
                 </ProjectSectionText>
 
                 <ProjectSectionText as="div">
@@ -125,13 +125,13 @@ export const Otros = () => {
               <div className={styles.rowLayout}>
                 <div className={styles.colText}>
                   <ProjectSectionText>
-                    In this project I explored computational modelling of Type B Aortic Dissection (TBAD), using idealised aortic geometries and simplified flow assumptions to study how different tear configurations affect local haemodynamics.
+                    In this TBAD computational modelling project, I worked with patient-derived aortic geometries rather than idealized shapes. The primary challenge involved developing effective meshing strategies to handle the complex morphology of the aorta, which difficult meshing when combining true and false lumen.
                   </ProjectSectionText>
                   <ProjectSectionText>
-                    The focus was on how lumen morphology, false lumen pressurisation and boundary conditions can influence wall shear stress patterns and flow distribution along the dissected segment.
+                    By preserving geometric complexity in the mesh, I could accurately capture how lumen morphology, false lumen pressurisation and realistic boundary conditions influence wall shear stress patterns and flow distribution along the dissected segment.
                   </ProjectSectionText>
                   <ProjectSectionText>
-                    This work helped me connect theoretical fluid dynamics with real vascular pathology, and served as a sandbox to test ideas that could later be translated into more patient-specific simulations.
+                    This work demonstrated how careful mesh design and geometric fidelity are critical for translating computational models into clinically relevant simulations.
                   </ProjectSectionText>
 
                   <ProjectSectionText as="div">
@@ -180,7 +180,7 @@ export const Otros = () => {
 
                 <div className={styles.colText}>
                   <ProjectSectionText>
-                    This study looks at how cyclic myometrial contractions generate peristaltic flow inside the uterine cavity, shaping intra-uterine fluid transport during different phases of the menstrual cycle.
+                    This team project for the subject of Fluid Mechanics looks at how cyclic myometrial contractions generate peristaltic flow inside the uterine cavity, shaping intra-uterine fluid transport during different phases of the menstrual cycle.
                   </ProjectSectionText>
                   <ProjectSectionText>
                     Using simplified channel-like geometries and wall-driven wave patterns, the project investigates how contraction frequency, direction and amplitude could influence particle trajectories relevant to embryo and sperm transport.

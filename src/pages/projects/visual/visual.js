@@ -2,6 +2,7 @@ import backgroundSprLarge from 'assets/urania-tablet-placeholder.jpg';
 import backgroundSprPlaceholder from 'assets/ceeibis-hero-placeholder.png';
 import backgroundSpr from 'assets/ceeibis-hero.png';
 
+
 // Portada principal
 import imageSprLessonBuilderDarkLarge from 'assets/Ceeibisportada.png';
 import imageSprLessonBuilderDarkPlaceholder from 'assets/Ceeibisportada.png';
@@ -10,22 +11,28 @@ import imageSprLessonBuilderLightLarge from 'assets/Ceeibisportada.png';
 import imageSprLessonBuilderLightPlaceholder from 'assets/Ceeibisportada.png';
 import imageSprLessonBuilderLight from 'assets/Ceeibisportada.png';
 
+
 // Collage JEIB + Hackathon
 import collage from 'assets/collage.png';
 import mlp from 'assets/mlp.png';
 
+
 // AI course
 import AIcourse from 'assets/AIcurso2.png';
 
+
 // Burgos
 import burgosImage from 'assets/Burgos.png';
+
 
 // Placeholder del vídeo (imagen)
 import meddevice from '../../../assets/meddevice.JPG';
 import uraniaVideoPlaceholder from '../../../assets/uraniavid-placeholder.png';
 
+
 // NUEVO: vídeo Urania como asset estático
 import uraniaVideo from 'assets/Uraniavid-trailer.mp4';
+
 
 // NUEVO: assets para motion design (LuminAI)
 import imageSprBackgroundVolcanismLarge from 'assets/spr-background-volcanism-large.jpg';
@@ -34,6 +41,7 @@ import imageSprBackgroundVolcanism from 'assets/spr-background-volcanism.jpg';
 import videoSprMotionLarge from 'assets/LuminaiPromoV5.mp4';
 import videoSprMotionPlaceholder from 'assets/spr-motion-placeholder.jpg';
 import videoSprMotion from 'assets/LuminaiPromoV5.mp4';
+
 
 import { Footer } from 'components/Footer';
 import { Image } from 'components/Image';
@@ -57,34 +65,43 @@ import { Fragment, useRef, useState, useEffect } from 'react';
 import { media } from 'utils/style';
 import styles from './visual.module.css';
 
+
 const title = 'Visual impairment & accessibility';
 const description =
-  'Over the last few years I’ve been developing assistive technology for people with visual impairment, inspired by challenges I’ve seen very closely in my own family. What started as a high‑school research project soon grew into an award‑winning prototype, and later into a series of wearable concepts exploring how sensing, AI and thoughtful product design can surface the kind of social cues that are often easy to miss with reduced vision.';
+  "Over the last few years I've been developing assistive technology for people with visual impairment, inspired by challenges I've seen very closely in my own family. What started as a high‑school research project soon grew into an award‑winning prototype, and later into a series of wearable concepts exploring how sensing, AI and thoughtful product design can surface the kind of social cues that are often easy to miss with reduced vision.";
+
 
 const roles = [];
+
 
 export const Visual = () => {
   const { themeId } = useTheme();
   const { dispatch } = useAppContext();
 
+
   const isDark = themeId === 'dark';
   const themes = ['dark', 'light'];
+
 
   const handleThemeChange = index => {
     dispatch({ type: 'setTheme', value: themes[index] });
   };
+
 
   const videoRef = useRef(null);
   const [isMuted, setIsMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(true);
   const [progress, setProgress] = useState(0); // 0–100
 
+
   // Forzar autoplay razonable al montar (especialmente en producción)
   useEffect(() => {
     if (!videoRef.current) return;
     const video = videoRef.current;
 
+
     video.muted = true;
+
 
     video
       .play()
@@ -97,12 +114,14 @@ export const Visual = () => {
       });
   }, []);
 
+
   const handleToggleMute = () => {
     if (!videoRef.current) return;
     const nextMuted = !isMuted;
     videoRef.current.muted = nextMuted;
     setIsMuted(nextMuted);
   };
+
 
   const handleTogglePlay = () => {
     if (!videoRef.current) return;
@@ -115,12 +134,14 @@ export const Visual = () => {
     }
   };
 
+
   const handleLoadedMetadata = () => {
     if (!videoRef.current) return;
     const dur = videoRef.current.duration || 0;
     const startAt = dur * 0.025; // 2.5% del vídeo
     videoRef.current.currentTime = startAt;
   };
+
 
   const handleTimeUpdate = () => {
     if (!videoRef.current) return;
@@ -130,6 +151,7 @@ export const Visual = () => {
     setProgress(pct);
   };
 
+
   const handleSeek = event => {
     if (!videoRef.current) return;
     const value = Number(event.target.value); // 0–100
@@ -138,6 +160,7 @@ export const Visual = () => {
     videoRef.current.currentTime = newTime;
     setProgress(value);
   };
+
 
   return (
     <Fragment>
@@ -149,35 +172,40 @@ export const Visual = () => {
           src={backgroundSpr}
           srcSet={`${backgroundSpr.src} 1080w, ${backgroundSprLarge.src} 2160w`}
           placeholder={backgroundSprPlaceholder}
+          translate="no"
         />
         <ProjectHeader
           title={title}
           description={description}
           roles={roles}
+          translate="yes"
         />
+
 
         {/* Sección Urania */}
         <ThemeProvider themeId="dark" data-invert>
           <ProjectSection
             backgroundOverlayOpacity={0.5}
             className={styles.videoSection}
+            translate="no"
           >
-            <ProjectSectionColumns width="full">
-              <ProjectSectionContent width="full">
-                <ProjectTextRow width="s">
-                  <ProjectSectionHeading>How it started</ProjectSectionHeading>
-                  <ProjectSectionText>
+            <ProjectSectionColumns width="full" translate="no">
+              <ProjectSectionContent width="full" translate="yes">
+                <ProjectTextRow width="s" translate="yes">
+                  <ProjectSectionHeading translate="yes">How it started</ProjectSectionHeading>
+                  <ProjectSectionText translate="yes">
                     This early prototype focused on detecting everyday obstacles for people with visual impairment, tailored to the specific needs of a close family member and refined through surveys with patients. I later presented this work at the Urania III Young Research Congress in Tudela, where it received the prize for the best project in the Health category.
                   </ProjectSectionText>
-                  <ProjectSectionText as="div">
-                    <Link href="https://ainves.org/an520235762/">
+                  <ProjectSectionText as="div" translate="yes">
+                    <Link href="https://ainves.org/an520235762/" translate="no">
                       Full text link
                     </Link>
                   </ProjectSectionText>
                 </ProjectTextRow>
               </ProjectSectionContent>
 
-              <div className={styles.videoWrapper}>
+
+              <div className={styles.videoWrapper} translate="no">
                 <Image
                   raised
                   className={styles.video}
@@ -188,6 +216,7 @@ export const Visual = () => {
                   placeholder={uraniaVideoPlaceholder}
                   alt="Talk about visual impairment and accessibility."
                   sizes={`(max-width: ${media.mobile}px) 100vw, 50vw`}
+                  translate="no"
                 />
                 <video
                   ref={videoRef}
@@ -201,6 +230,7 @@ export const Visual = () => {
                   preload="auto"
                   onLoadedMetadata={handleLoadedMetadata}
                   onTimeUpdate={handleTimeUpdate}
+                  translate="no"
                 >
                   <track
                     kind="subtitles"
@@ -214,6 +244,7 @@ export const Visual = () => {
                   type="button"
                   className={styles.playPauseButton}
                   onClick={handleTogglePlay}
+                  translate="no"
                 >
                   {isPlaying ? 'Pause' : 'Play'}
                 </button>
@@ -221,10 +252,11 @@ export const Visual = () => {
                   type="button"
                   className={styles.muteButton}
                   onClick={handleToggleMute}
+                  translate="no"
                 >
                   {isMuted ? 'Unmute' : 'Mute'}
                 </button>
-                <div className={styles.progressWrapper}>
+                <div className={styles.progressWrapper} translate="no">
                   <input
                     className={styles.progressInput}
                     type="range"
@@ -233,8 +265,10 @@ export const Visual = () => {
                     step={1}
                     value={progress}
                     onInput={handleSeek}
+                    translate="no"
                   />
                 </div>
+
 
                 <button
                   type="button"
@@ -245,6 +279,7 @@ export const Visual = () => {
                       '_blank'
                     )
                   }
+                  translate="no"
                 >
                   Full video
                 </button>
@@ -252,6 +287,7 @@ export const Visual = () => {
             </ProjectSectionColumns>
           </ProjectSection>
         </ThemeProvider>
+
 
         {/* Sección Motion design LuminAI */}
         <ThemeProvider themeId="dark" data-invert>
@@ -266,11 +302,13 @@ export const Visual = () => {
                 placeholder={imageSprBackgroundVolcanismPlaceholder}
                 alt="A dramatic ocean scene with lava forming a new land mass."
                 sizes="100vw"
+                translate="no"
               />
             }
+            translate="no"
           >
-            <ProjectSectionColumns width="full">
-              <div className={styles.videoWrapper}>
+            <ProjectSectionColumns width="full" translate="no">
+              <div className={styles.videoWrapper} translate="no">
                 <Image
                   raised
                   className={styles.video}
@@ -281,17 +319,19 @@ export const Visual = () => {
                   placeholder={videoSprMotionPlaceholder}
                   alt="LuminAI motion design promo."
                   sizes={`(max-width: ${media.mobile}px) 100vw, 50vw`}
+                  translate="no"
                 />
               </div>
 
-              <ProjectSectionContent width="full">
-                <ProjectTextRow width="s">
-                  <ProjectSectionHeading>LuminAI</ProjectSectionHeading>
-                  <ProjectSectionText>
+
+              <ProjectSectionContent width="full" translate="yes">
+                <ProjectTextRow width="s" translate="yes">
+                  <ProjectSectionHeading translate="yes">LuminAI</ProjectSectionHeading>
+                  <ProjectSectionText translate="yes">
                     LuminAI is a team project developed as part of the Medical Device Design course at NTU, where we are exploring how wearable technology and AI can make social interaction more accessible for people with visual impairment. Working closely with my teammates, we intend to present the final prototype by May 2026.
                   </ProjectSectionText>
-                  <ProjectSectionText as="div">
-                    <Link href="">
+                  <ProjectSectionText as="div" translate="yes">
+                    <Link href="" translate="no">
                       Coming soon...
                     </Link>
                   </ProjectSectionText>
@@ -301,32 +341,35 @@ export const Visual = () => {
           </ProjectSection>
         </ThemeProvider>
 
+
         {/* What I did + MLP */}
-        <ProjectSection className={styles.whatIDidSection}>
-          <ProjectSectionColumns>
-            <ProjectSectionContent>
-              <ProjectTextRow>
-                <ProjectSectionHeading>What I did</ProjectSectionHeading>
-                <ProjectSectionText>
+        <ProjectSection className={styles.whatIDidSection} translate="no">
+          <ProjectSectionColumns translate="no">
+            <ProjectSectionContent translate="yes">
+              <ProjectTextRow translate="yes">
+                <ProjectSectionHeading translate="yes">What I did</ProjectSectionHeading>
+                <ProjectSectionText translate="yes">
                   Led the AI and software team, where I designed and implemented a real‑time gesture recognition pipeline that combined robust landmark extraction with a custom neural model to classify user gestures on the fly, even under changing lighting, distance, and camera position. I also contributed to the overall product design, user research, and prototyping efforts, as well as 3D rendering and animations.
                 </ProjectSectionText>
               </ProjectTextRow>
             </ProjectSectionContent>
-            <div className={styles.sidebarImages}>
+            <div className={styles.sidebarImages} translate="no">
               <Image
                 className={styles.mlpImage}
                 srcSet={[mlp]}
                 placeholder={mlp}
                 alt="Med device design pipeline"
                 sizes={`(max-width: ${media.mobile}px) 120vw, 80vw`}
+                translate="no"
               />
             </div>
           </ProjectSectionColumns>
         </ProjectSection>
 
+
         {/* Group 09 en grande */}
-        <ProjectSection>
-          <ProjectSectionContent>
+        <ProjectSection translate="no">
+          <ProjectSectionContent translate="no">
             <Image
               raised
               className={styles.group9Image}
@@ -334,11 +377,13 @@ export const Visual = () => {
               placeholder={meddevice}
               alt="Medical Device design group photo."
               sizes="70vw"
+              translate="no"
             />
-            <ProjectTextRow>
-              <ProjectSectionText as="p">
+            <ProjectTextRow translate="yes">
+              <ProjectSectionText as="p" translate="yes">
                 <span
                   style={{ fontSize: '0.9rem', color: 'var(--colorTextMuted)' }}
+                  translate="yes"
                 >
                   Group 09 — Medical Device Design course, NTU Singapore.
                 </span>
@@ -347,7 +392,8 @@ export const Visual = () => {
           </ProjectSectionContent>
         </ProjectSection>
 
-        <Footer />
+
+        <Footer translate="no" />
       </ProjectContainer>
     </Fragment>
   );

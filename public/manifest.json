@@ -1,6 +1,6 @@
 {
-  "short_name": "Hamish Williams",
-  "name": "Design Portfolio of Hamish Williams",
+  "short_name": "Alejandro Lopez Lamata",
+  "name": "Design Portfolio of Alejandro Lopez Lamata",
   "icons": [
     {
       "src": "favicon.png",
@@ -19,7 +19,7 @@
     }
   ],
   "start_url": ".",
-  "display": "standalone",
+  "display": "browser",
   "theme_color": "#111111",
   "background_color": "#111111"
 }
