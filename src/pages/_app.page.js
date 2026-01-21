@@ -34,9 +34,14 @@ const App = ({ Component, pageProps }) => {
   useEffect(() => {
     if (process.env.NODE_ENV === 'development') return;
 
-    Fathom.load(process.env.NEXT_PUBLIC_FATHOM_ID, {
-      url: process.env.NEXT_PUBLIC_FATHOM_URL,
-    });
+    const siteId = process.env.NEXT_PUBLIC_FATHOM_ID;
+    const fathomUrl = process.env.NEXT_PUBLIC_FATHOM_URL;
+
+    // If missing env vars, don't load analytics (prevents client-side crash)
+    if (!siteId || !fathomUrl) return;
+
+    // fathom-client expects a siteId string
+    Fathom.load(siteId, { url: fathomUrl }); // load(siteId: string, opts?) [web:374]
 
     const onRouteChangeComplete = () => {
       Fathom.trackPageview({ url: window.location.pathname });
