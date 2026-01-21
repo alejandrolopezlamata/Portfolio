@@ -20,8 +20,7 @@ export const AppContext = createContext({});
 
 const repoPrompt = `
 __  __  __
-\u005C \u005C \u005C \u005C \u005C\u2215\n \u005C \u005C\u2215\u005C \u005C\n  \u005C\u2215  \u005C\u2215
-\n\nTaking a peek huh? Check out the source code: https://github.com/HamishMW/portfolio
+Nothing to see here hahah ;)
 `;
 
 const App = ({ Component, pageProps }) => {
@@ -70,7 +69,14 @@ const App = ({ Component, pageProps }) => {
                 rel="canonical"
                 href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}${canonicalRoute}`}
               />
+
+              {/* Google Search Console verification */}
+              <meta
+                name="google-site-verification"
+                content="5jGZJZJXSAfJAbiyFFrfWyY_HuSgYwF49VCdi48eEw8"
+              />
             </Head>
+
             <VisuallyHidden
               showOnFocus
               as="a"
