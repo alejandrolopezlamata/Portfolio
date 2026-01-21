@@ -20,13 +20,25 @@ export default function Document() {
         <style dangerouslySetInnerHTML={{ __html: fontStyles }} />
         <style dangerouslySetInnerHTML={{ __html: tokenStyles }} />
       </Head>
+
       <body data-theme="dark" tabIndex={-1}>
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              const initialTheme = JSON.parse(localStorage.getItem('theme'));
-              document.body.dataset.theme = initialTheme || 'dark';
-            `,
+(function () {
+  var theme = 'dark';
+  try {
+    var raw = localStorage.getItem('theme');
+    if (raw) {
+      // Supports JSON ("dark") and plain strings (dark)
+      theme = raw[0] === '"' ? JSON.parse(raw) : raw;
+    }
+  } catch (e) {
+    theme = 'dark';
+  }
+  document.body.dataset.theme = theme || 'dark';
+})();
+            `.trim(),
           }}
         />
         <Main />
