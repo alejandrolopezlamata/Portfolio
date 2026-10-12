@@ -11,7 +11,7 @@ import {
   MeshPhongMaterial,
   PerspectiveCamera,
   Scene,
-  SphereBufferGeometry,
+  SphereGeometry,
   UniformsUtils,
   Vector2,
   WebGLRenderer,
